@@ -27,10 +27,10 @@
 
                  
                 <div class="form-group row">
-                    <label for="totalHours" class="col-md-2 col-form-label">totalHours</label>
+                    <label for="totalHours" class="col-md-2 col-form-label">Total</label>
                      <div class="col-md-5">
-                        <input type="text" class="form-control" #totalHours="ngModel" name="totalHours" [(ngModel)]="payroll.totalHours"  required>
-                         <div [hidden]="totalHours.valid || (totalHours.pristine && !payrollForm.submitted)" class="text-danger">
+                        <input type="text" class="form-control" #frequency="ngModel" name="frequency" [(ngModel)]="payroll.frequency"  required>
+                         <div [hidden]="frequency.valid || (frequency.pristine && !payrollForm.submitted)" class="text-danger">
                            Number of Days is required.
                          </div>
                      </div>

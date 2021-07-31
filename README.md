@@ -26,3 +26,16 @@ To Add new Setr of Initial Data
 > todo.service.ts change getAllTodos method
 
 ```
+
+
+##### Publisb new Code Changes to website
+
+##### Build Code and Publish Website
+ng build --prod --base-href "https://ann23GB.github.io/LIS5367/"
+npx angular-cli-ghpages --dir  dist\todo-nanny-app
+
+# Commit and Push Source Code
+git add .
+git commit -m ""
+git push
+
