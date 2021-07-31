@@ -1,0 +1,73 @@
+<div class="col-sm-12 pt-5">
+    <div class="col-md-12">
+        <form id="todoForm" #todoForm="ngForm" (ngSubmit)="onTodoSubmitForm(todoForm);" novalidat>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">{{mode}} Task</legend>    
+                <div class="form-group row">
+                    <label for="task" class="col-md-2 col-form-label">Task</label>
+                    <div class="col-md-5">
+                        <select class="form-control" #task="ngModel" name="task" [(ngModel)]="todoDetail.task" placeholder="Task" required>
+                            <option>Meal Preparation</option>
+                            <option>Nap Time</option>
+                            <option>Outdoor Walk</option>
+                            <option>Indoor Play</option>
+                            <option>Circle Time</option>
+                            <option>Others</option>
+                          </select>
+                        <div *ngIf="task.invalid && (task.dirty || task.touched || todoForm.submitted)" class="text-danger">
+                            <div *ngIf="task.errors.required"> Task is required. </div>
+                            <!-- <div *ngIf="task.errors.pattern"> The task address you have entered is invalid. please try again.</div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-md-2 col-form-label">Description</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" #description="ngModel" name="description" [(ngModel)]="todoDetail.description" placeholder="Description" required>
+                        <div [hidden]="description.valid || (description.pristine && !todoForm.submitted)" class="text-danger">
+                          Description is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="notes" class="col-md-2 col-form-label">Notes</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" #notes="ngModel" name="notes" [(ngModel)]="todoDetail.notes" placeholder="Notes">
+                        <div [hidden]="notes.valid || (notes.pristine && !todoForm.submitted)" class="text-danger">
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="priority" class="col-md-2 col-form-label">Priority</label>
+                    <div class="col-md-5">
+                        <select class="form-control" #priority="ngModel" name="priority" [(ngModel)]="todoDetail.priority" placeholder="Priority" required>
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                          </select>
+                        <div *ngIf="priority.invalid && (priority.dirty || priority.touched || todoForm.submitted)" class="text-danger">
+                            <div *ngIf="priority.errors.required"> Priority is required. </div>
+                            <!-- <div *ngIf="priority.errors.pattern"> The priority address you have entered is invalid. please try again.</div> -->
+                        </div>
+                    </div>
+                </div>
+               <!--  <div class="form-group row">
+                   <label for="phone" class="col-md-2 col-form-label">Phone</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" #phone="ngModel" name="phone" [(ngModel)]="todoDetail.phone" placeholder="Phone" required>
+                        <div [hidden]="phone.valid || (phone.pristine && !todoForm.submitted)" class="text-danger">
+                          Phone is required.
+                        </div>
+                    </div>
+                </div> -->
+                <div class="form-group row">
+                    <div class="col-md-7 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                        <button type="button" (click)="onClickCancel()" class="btn btn-primary">Cancel</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

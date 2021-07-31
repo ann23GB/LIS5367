@@ -1,0 +1,86 @@
+<div class="col-sm-12 pt-5">
+    <div class="col-md-12">
+        <form id="timesheetForm" #timesheetForm="ngForm" (ngSubmit)="onTimesheetSubmitForm(timesheetForm);" novalidat>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">{{mode}} Timesheet</legend>    
+                <div class="form-group row">
+                    <label for="name" class="col-md-2 col-form-label">Name</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" #name="ngModel" name="name" [(ngModel)]="timesheetDetail.name" placeholder="Name" required>
+                        <div [hidden]="name.valid || (name.pristine && !timesheetForm.submitted)" class="text-danger">
+                          Name is required.
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="form-group row">
+                    <label for="date" class="col-md-2 col-form-label">Date</label>
+                    <div class="col-md-5">
+                        <input class="form-control datepicker" type="date" #date="ngModel" name="date" ng-model="date" [(ngModel)]="timesheetDetail.date" placeholder="MM-dd-yyyy" min="01-01-2020" max="01-01-2022" required>
+                        <div [hidden]="date.valid || (date.pristine && !timesheetForm.submitted)" class="text-danger">
+                          Date is required.
+                        </div>
+                    </div>
+                </div>
+                                               
+                <div class="form-group row">
+                    <label for="timeIn" class="col-md-2 col-form-label">Time In</label>
+                    <div class="col-md-5">
+                        <input type="time" class="form-control" #timeIn="ngModel" name="timeIn"
+                         [(ngModel)]="timesheetDetail.timeIn" 
+                         (ngModelChange)="onTimeIn($event)"
+                         placeholder="Time In" required>
+                        <div [hidden]="timeIn.valid || (timeIn.pristine && !timesheetForm.submitted)" class="text-danger">
+                        Time In is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="timeOut" class="col-md-2 col-form-label">Time Out</label>
+                    <div class="col-md-5">
+                        <input type="time" class="form-control" #timeOut="ngModel" name="timeOut" 
+                        [(ngModel)]="timesheetDetail.timeOut" 
+                        (ngModelChange)="onTimeOut($event)"
+                        placeholder="Time Out" required>
+                        <div *ngIf="timeOut.invalid && (timeOut.dirty || timeOut.touched || timesheetForm.submitted)" class="text-danger">
+                            <div *ngIf="timeOut.errors.required"> Time Out is required. </div>
+                             <!-- <div *ngIf="timeOut.errors.pattern"> The timeOut address you have entered is invalid. please try again.</div>  -->
+                        </div>
+                    </div>
+                </div>
+              
+                <div class="form-group row">
+                    <label for="totalHours" class="col-md-2 col-form-label">Total Hours</label>
+                     <div class="col-md-5">
+                        <select class="form-control" #totalHours="ngModel" name="totalHours" [(ngModel)]="timesheetDetail.totalHours" placeholder="Total Hours" required>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                          </select>
+                         <div [hidden]="totalHours.valid || (totalHours.pristine && !timesheetForm.submitted)" class="text-danger">
+                           Total Hours is required.
+                         </div>
+                     </div>
+                 </div> 
+                <div class="form-group row">
+                    <div class="col-md-7 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                        <button type="button" (click)="onClickCancel()" class="btn btn-primary">Cancel</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div> 

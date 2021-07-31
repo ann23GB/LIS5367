@@ -1,27 +1,28 @@
-# TodoNannyApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+```shell
+$ npm start
 
-## Development server
+Create a Component that is routing Aware
+=========================================
+[1]
+$ ng generate module components/xxx --routing
+$ ng generate component components/xxx
+[2]
+Add Routing in app.routing.module.ts - change variable in line #4
+[3]
+in xxx-routing.module.ts --> add routes variable
+[4]
+ex: Use component TimeSheetComponent in HomeModule Module
+> Inside Timesheet Module, export the Component (line 14) (under exports section)
+> Import TimeSheet Module in HomeModule (under imports section)
+> To use data, import the Service by adding the service decleration inside 'providers section' in the module
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To Delete Data from Local
+===========================
+> F12 --> Applicatiuon --> Local Storage --> localData --> right click and delete
 
-## Code scaffolding
+To Add new Setr of Initial Data
+===============================
+> todo.service.ts change getAllTodos method
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```

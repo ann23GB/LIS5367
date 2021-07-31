@@ -1,18 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRouting } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoDetailComponent } from './todo-detail/todo-detail.component';
+import { TopHeaderComponent } from './components/top-header/top-header.component';
+import { TimesheetDetailModule } from './components/timesheet-detail/timesheet-detail.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoDetailComponent
+    TopHeaderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRouting,
+    TimesheetDetailModule
   ],
   providers: [],
   bootstrap: [AppComponent]
