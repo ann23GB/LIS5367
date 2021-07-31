@@ -13,14 +13,7 @@ export class TimesheetService {
         if(localStorage.getItem('localTimesheetData') !== null){ 
             this.timesheets = JSON.parse(localStorage.getItem('localTimesheetData'));
         } else {
-            var timesheetsArray = [{
-                id: 1,
-                name: "Jenny",
-                date: "24-March-2021",
-                timeIn: "9.40 am",
-                timeOut: "9.40 pm",
-                totalHours: "8Hrs"
-            }];
+            var timesheetsArray = [];
             localStorage.setItem('localTimesheetData', JSON.stringify(timesheetsArray));
             this.timesheets = JSON.parse(localStorage.getItem('localTimesheetData'));
         }       

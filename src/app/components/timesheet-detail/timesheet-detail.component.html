@@ -28,7 +28,7 @@
                     <div class="col-md-5">
                         <input type="time" class="form-control" #timeIn="ngModel" name="timeIn"
                          [(ngModel)]="timesheetDetail.timeIn" 
-                         (ngModelChange)="onTimeIn($event)"
+                         (ngModelChange)="setTotalHours(timesheetDetail.timeIn, timesheetDetail.timeOut)"
                          placeholder="Time In" required>
                         <div [hidden]="timeIn.valid || (timeIn.pristine && !timesheetForm.submitted)" class="text-danger">
                         Time In is required.
@@ -40,7 +40,7 @@
                     <div class="col-md-5">
                         <input type="time" class="form-control" #timeOut="ngModel" name="timeOut" 
                         [(ngModel)]="timesheetDetail.timeOut" 
-                        (ngModelChange)="onTimeOut($event)"
+                        (ngModelChange)="setTotalHours(timesheetDetail.timeIn, timesheetDetail.timeOut)"
                         placeholder="Time Out" required>
                         <div *ngIf="timeOut.invalid && (timeOut.dirty || timeOut.touched || timesheetForm.submitted)" class="text-danger">
                             <div *ngIf="timeOut.errors.required"> Time Out is required. </div>

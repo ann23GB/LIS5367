@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { PayrollRoutingModule } from './payroll-routing.module';
 import { PayrollComponent } from './payroll.component';
 import { PayrollService } from 'src/app/service/payroll.service';
+import { TimesheetService } from 'src/app/service/timesheet.service';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { PayrollService } from 'src/app/service/payroll.service';
     PayrollRoutingModule
   ],
   providers: [
-    PayrollService
+    PayrollService,
+    TimesheetService
   ],
   exports: [
     PayrollComponent

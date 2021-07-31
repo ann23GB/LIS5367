@@ -5,6 +5,7 @@ import { PayrollService } from 'src/app/service/payroll.service';
 
 import { TimesheetService } from '../../service/timesheet.service';
 import { TimeSheet } from 'src/app/model/timesheet';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-payroll',
@@ -13,45 +14,47 @@ import { TimeSheet } from 'src/app/model/timesheet';
 })
 export class PayrollComponent implements OnInit {
   public payroll = <Payroll>{};
-  public timesheetId: string;
-  public timesheetDetail = <TimeSheet>{};
   public hourlyRate = 10;
 
-  constructor( private activatedRoute: ActivatedRoute, private router: Router, private payrollService: PayrollService ) { }
+  constructor( private activatedRoute: ActivatedRoute, private router: Router, 
+    private payrollService: PayrollService, private timesheetService: TimesheetService ) { }
   
   public mode: string; 
+  public timesheets: TimeSheet[] = [];
+  public names: Set<string> = new Set();
+  public selectedName: string;
+  public noOfDays: number;
+  public totalHours: number;
+
 
   ngOnInit() {
-    console.log(this.timesheetDetail);
+      this.loadAllTimesheetList();    
   }
-  // ngOnInit() {
-  //     this.loadAllPayrollList();    
-  // }
-  // loadAllPayrollList() {
-  //     //this.payrolls = this.payrollService.getAllPayroll();
-  // }
+  loadAllTimesheetList() {
+      this.timesheets = this.timesheetService.getAllTimesheet();
+      this.names = new Set(this.timesheets.map(item => item.name));
+  }
 
-  // onClickEditPayrollDetail(id) {
-  //   this.router.navigate(['/payroll-detail'], {queryParams: {id: id}});
-  // }
+  onNannySelected(e){
+    let filterdTimesheets: TimeSheet[] = this.timesheets.filter(item => item.name === this.selectedName)
+    this.noOfDays = filterdTimesheets.length
+    this.totalHours = filterdTimesheets.reduce( function(a, b){
+      return Number(a) + Number(b['totalHours']);
+    }, 0)
+  }
 
-  // onClickAddPayroll() {
-  //     this.router.navigate(['/payroll-detail']);
-  // }
 
-  // onClickPayrollDelete(id) {
-  //     //this.payrollService.deletePayrollDetail(id);
-  //     this.loadAllPayrollList(); 
-  // }
+  generatePayroll() {
+    const replacer = (key, value) => value === null ? '' : value; 
+    const csv = [
+      "Name," + this.selectedName + "\r\n",
+      "No of Days," + this.noOfDays + "\r\n",
+      "Total Hours," + this.totalHours + "\r\n",
+      "Amount," + (this.totalHours * this.hourlyRate) + "$" + "\r\n"
+    ]
 
-  onPayrollSubmitForm(form) {
-    console.log(form);
-    if(form.valid) {
-        
-        this.router.navigate(['/home']);
-    } else {
-    
-    }
+    var blob = new Blob(csv, {type: 'text/csv' })
+    saveAs(blob, "payroll.csv");
   }
 
   onGeneratePayroll()

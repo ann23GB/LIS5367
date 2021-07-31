@@ -39,3 +39,8 @@ git add .
 git commit -m ""
 git push
 
+
+
+# Installed NPM Modules
+* angular-cli-ghpages": "^1.0.0-rc.2", - To Publish to Github Pages
+* "file-saver": "^2.0.5", - To Download file from Browser

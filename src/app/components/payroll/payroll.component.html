@@ -1,13 +1,13 @@
  <div class="col-sm-12 pt-5">
     <div class="col-md-12">
-        <form id="payrollForm" #payrollForm="ngForm" (ngSubmit)="onPayrollSubmitForm(payrollForm);" novalidat>
+        <form id="payrollForm" #payrollForm="ngForm" novalidat>
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">{{mode}} Payroll</legend>    
                 <div class="form-group row">
                     <label for="name" class="col-md-2 col-form-label">Name</label>
                     <div class="col-md-5">
-                        <select class="form-control" #name="ngModel" name="name" [(ngModel)]="timesheetDetail.name" placeholder="Select a Name" required>
-                            <option value="{{timesheet?.name}}" *ngFor="let timesheet of timesheetDetail;">{{timesheet.name}} </option>  
+                        <select class="form-control" #name="ngModel" name="name" [(ngModel)]="selectedName" placeholder="Select a Name" (change)="onNannySelected($event)" required>
+                            <option value="{{name}}" *ngFor="let name of names;">{{name}} </option>  
                         </select>
                         <div [hidden]="name.valid || (name.pristine && !payrollForm.submitted)" class="text-danger">
                           Name is required.
@@ -18,7 +18,7 @@
                 <div class="form-group row">
                     <label for="frequency" class="col-md-2 col-form-label">Number of Days</label>
                      <div class="col-md-5">
-                        <input type="text" class="form-control" #frequency="ngModel" name="frequency" [(ngModel)]="payroll.frequency"  required>
+                        <input type="text" class="form-control" #frequency="ngModel" name="frequency" [(ngModel)]="noOfDays"  required>
                          <div [hidden]="frequency.valid || (frequency.pristine && !payrollForm.submitted)" class="text-danger">
                            Number of Days is required.
                          </div>
@@ -27,9 +27,9 @@
 
                  
                 <div class="form-group row">
-                    <label for="totalHours" class="col-md-2 col-form-label">Total</label>
+                    <label for="totalHours" class="col-md-2 col-form-label">Total Hours</label>
                      <div class="col-md-5">
-                        <input type="text" class="form-control" #frequency="ngModel" name="frequency" [(ngModel)]="payroll.frequency"  required>
+                        <input type="text" class="form-control" #totalHors="ngModel" name="totalHors" [(ngModel)]="totalHours"  required>
                          <div [hidden]="frequency.valid || (frequency.pristine && !payrollForm.submitted)" class="text-danger">
                            Number of Days is required.
                          </div>
@@ -39,7 +39,7 @@
                 <div class="form-group row">
                     <div class="col-md-7 text-right">
                         <!--<button type="submit" class="btn btn-primary mr-2">Save</button>-->
-                        <button type="button" (click)="onGeneratePayroll()" class="btn btn-primary">Generate Payroll</button>
+                        <button type="button" (click)="generatePayroll()" class="btn btn-primary">Generate Payroll</button>
                     </div>
                 </div> 
             </fieldset>

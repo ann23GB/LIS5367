@@ -20,8 +20,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let timesheet of timesheets">
-                        <td class="text-center">{{timesheet.id}}</td>
+                    <tr *ngFor="let timesheet of timesheets; let i = index">
+                        <td class="text-center">{{i+1}}</td>
                         <td>{{timesheet.name}}</td>
                         <td>{{timesheet.date}}</td>
                         <td>{{timesheet.timeIn}}</td>

@@ -66,4 +66,13 @@ export class TimesheetDetailComponent implements OnInit {
       console.log( this.timesheetDetail.totalHours);
     }
   }
+public setTotalHours(timeIn:string, timeOut:string){
+  if(timeIn != null && timeOut != null){
+    let inDate: Date = new Date(2000, 1, 1, parseInt(timeIn.split(":")[0]), parseInt(timeIn.split(":")[1]))
+    let outDate: Date = new Date(2000, 1, 1, parseInt(timeOut.split(":")[0]), parseInt(timeOut.split(":")[1]))
+    let diffInMinutes: any = (outDate.getTime() - inDate.getTime()) / ( 60 * 1000)
+    this.timesheetDetail.totalHours = Math.round(diffInMinutes / 60)
+  }
+}
+
 }

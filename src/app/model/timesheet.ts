@@ -5,8 +5,8 @@ export class TimeSheet {
         public id: number,
         public name: string,
         public date: Date,
-        public timeIn: Date,
-        public timeOut: Date,
+        public timeIn: string,
+        public timeOut: string,
         public totalHours: number
     ) { }
 }
